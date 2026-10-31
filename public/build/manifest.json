@@ -28,23 +28,16 @@
     "src": "_instrument-sans-600-normal-B9e8oLYv.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-TmcA8Oqr.css",
+    "file": "assets/app-DkYYxXzg.css",
     "name": "app",
     "names": [
       "app.css"
     ],
     "src": "resources/css/app.css",
-    "isEntry": true,
-    "assets": [
-      "assets/Arimo-C1jFavGJ.ttf"
-    ]
-  },
-  "resources/fonts/arimo/Arimo.ttf": {
-    "file": "assets/Arimo-C1jFavGJ.ttf",
-    "src": "resources/fonts/arimo/Arimo.ttf"
+    "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-BvRk9kiK.js",
+    "file": "assets/app-DigUYoXA.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

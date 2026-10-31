@@ -8,33 +8,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    @php
-        $displayProducts = $products->isNotEmpty() ? $products : collect([
-            (object) [
-                'name' => 'Moulding',
-                'description' => 'Carefully finished profiles for furniture, interiors, and construction.',
-                'image' => 'products/Moulding.png',
-            ],
-            (object) [
-                'name' => 'Hammer Mill',
-                'description' => 'Reliable processing equipment for consistent wood-fiber output.',
-                'image' => 'products/Hammer Mill.png',
-            ],
-            (object) [
-                'name' => 'Sawmill',
-                'description' => 'Quality timber products, prepared with care from log to finish.',
-                'image' => 'products/Sawmil.png',
-            ],
-        ]);
-        $displayMembers = $members->isNotEmpty() ? $members : collect([
-            (object) ['name' => 'Catherine Sanjaya', 'title' => 'CEO', 'image' => 'members/Catherine Sanjaya.png'],
-            (object) ['name' => 'Rio Marcellino', 'title' => 'CFO', 'image' => 'members/Rio Marcellino.png'],
-            (object) ['name' => 'Jannice Ruvinda Sufianto', 'title' => 'Director', 'image' => 'members/Jannice Ruvinda Sufianto.png'],
-            (object) ['name' => 'James Devara Isnardy', 'title' => 'COO', 'image' => 'members/James Devara Isnardy.png'],
-            (object) ['name' => 'Gabriella Maria Taffyanna Santoso', 'title' => 'CFO', 'image' => 'members/Gabriella Maria Taffyanna Santoso.png'],
-        ]);
-    @endphp
-
     <main>
         <section class="hero" id="home" aria-label="Arbo wood materials">
             <header class="site-header">
@@ -163,7 +136,7 @@
                     <p>Our core products are made from carefully selected wood. From moulding and mill equipment to quality timber, we combine practical expertise with dependable production.</p>
                 </div>
                 <div class="product-grid">
-                    @foreach ($displayProducts as $product)
+                    @foreach ($products as $product)
                         <article class="product-card">
                             <div class="product-image"><img src="{{ asset('images/' . ltrim($product->image, '/')) }}" alt="{{ $product->name }}" loading="lazy"></div>
                             <div class="product-copy">
@@ -250,7 +223,7 @@
                     <p>Meet the members of highly skilled, committed and motivated professionals specializing in respective core fields.</p>
                 </div>
                 <div class="team-grid">
-                    @foreach ($displayMembers as $member)
+                    @foreach ($members as $member)
                         <article class="team-card">
                             <div class="team-photo"><img src="{{ asset('images/' . ltrim($member->image, '/')) }}" alt="{{ $member->name }}" loading="lazy"></div>
                             <h3>{{ $member->name }}</h3>
