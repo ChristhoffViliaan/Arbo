@@ -28,13 +28,35 @@
     "src": "_instrument-sans-600-normal-B9e8oLYv.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DkYYxXzg.css",
+    "file": "assets/app-5lmlHOeD.css",
     "name": "app",
     "names": [
       "app.css"
     ],
     "src": "resources/css/app.css",
-    "isEntry": true
+    "isEntry": true,
+    "assets": [
+      "assets/Helvetica-zhVn_y_h.ttf",
+      "assets/Helvetica-Bold-DbiQUL7g.ttf",
+      "assets/Helvetica-Oblique-BUgM8Nqj.ttf",
+      "assets/Helvetica-BoldOblique-ZDR53DOa.ttf"
+    ]
+  },
+  "resources/fonts/Helvetica/Helvetica-Bold.ttf": {
+    "file": "assets/Helvetica-Bold-DbiQUL7g.ttf",
+    "src": "resources/fonts/Helvetica/Helvetica-Bold.ttf"
+  },
+  "resources/fonts/Helvetica/Helvetica-BoldOblique.ttf": {
+    "file": "assets/Helvetica-BoldOblique-ZDR53DOa.ttf",
+    "src": "resources/fonts/Helvetica/Helvetica-BoldOblique.ttf"
+  },
+  "resources/fonts/Helvetica/Helvetica-Oblique.ttf": {
+    "file": "assets/Helvetica-Oblique-BUgM8Nqj.ttf",
+    "src": "resources/fonts/Helvetica/Helvetica-Oblique.ttf"
+  },
+  "resources/fonts/Helvetica/Helvetica.ttf": {
+    "file": "assets/Helvetica-zhVn_y_h.ttf",
+    "src": "resources/fonts/Helvetica/Helvetica.ttf"
   },
   "resources/js/app.js": {
     "file": "assets/app-DigUYoXA.js",
