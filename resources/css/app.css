@@ -405,8 +405,7 @@ button { font: inherit; }
     flex: 0 0 clamp(45px, 5.5vw, 80px);
     place-items: center;
     border-radius: 50%;
-    /* background: #25ba00; */
-    background: #e70000;
+    background: #fb8600;
     color: var(--white);
 }
 .floating-contact-icon svg { width: clamp(20px, 2.2vw, 32px); height: clamp(20px, 2.2vw, 32px); }
