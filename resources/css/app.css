@@ -82,6 +82,7 @@ button { font: inherit; }
     background: linear-gradient(180deg, rgb(9 17 10 / 48%), rgb(9 17 10 / 20%) 42%, rgb(9 17 10 / 50%));
 }
 .site-header {
+    border-bottom: 1px solid rgb(255 255 255 / 85%);
     position: absolute;
     z-index: 3;
     top: 0;
@@ -381,8 +382,8 @@ button { font: inherit; }
 .floating-contact {
     position: fixed;
     z-index: 5;
-    right: 16px;
-    bottom: 16px;
+    right: clamp(10px, 1.5vw, 24px);
+    bottom: clamp(10px, 1.5vw, 24px);
     display: flex;
     align-items: center;
     gap: 18px;
@@ -390,24 +391,24 @@ button { font: inherit; }
     transition: transform .2s ease;
 }
 .floating-contact-label {
-    padding: 3px 10px 4px;
+    padding: clamp(3px, 0.3vw, 5px) clamp(8px, 0.8vw, 12px);
     border-radius: 8px;
     background: var(--white);
-    font-size: 18px;
+    font-size: clamp(12px, 1.2vw, 18px);
     line-height: 1;
     box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
 }
 .floating-contact-icon {
     display: grid;
-    width: 80px;
-    height: 80px;
-    flex: 0 0 80px;
+    width: clamp(45px, 5.5vw, 80px);
+    height: clamp(45px, 5.5vw, 80px);
+    flex: 0 0 clamp(45px, 5.5vw, 80px);
     place-items: center;
     border-radius: 50%;
     background: #25ba00;
     color: var(--white);
 }
-.floating-contact-icon svg { width: 32px; height: 32px; }
+.floating-contact-icon svg { width: clamp(20px, 2.2vw, 32px); height: clamp(20px, 2.2vw, 32px); }
 .floating-contact:hover { transform: translateY(-3px); }
 .floating-contact:focus-visible { outline: 3px solid var(--forest); outline-offset: 4px; }
 
