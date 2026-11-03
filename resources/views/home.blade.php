@@ -258,7 +258,8 @@
                     </div>
                     <div class="footer-column footer-hours">
                         <h2>Working Hours</h2>
-                        <p><strong>Monday to Saturday</strong> <span>24 hours</span></p>
+                        <p><strong>Monday to Saturday</strong><br>
+                        <span>24 hours</span></p>
                     </div>
                     <div class="footer-column footer-social">
                         <h2>Social Media</h2>
