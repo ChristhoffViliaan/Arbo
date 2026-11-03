@@ -28,15 +28,9 @@
                     <a href="#contact">Contact</a>
                 </nav>
                 <div class="header-socials" aria-label="Social media">
-                    <span aria-label="LinkedIn">
-                        <img src="{{ asset('images/others/Rectangle 4.png') }}" alt="">
-                    </span>
-                    <span aria-label="TikTok">
-                        <img src="{{ asset('images/others/Rectangle 5.png') }}" alt="">
-                    </span>
-                    <span aria-label="Instagram">
-                        <img src="{{ asset('images/others/Rectangle 6.png') }}" alt="">
-                    </span>
+                    <a href="https://www.instagram.com/arbo.ind/" aria-label="Instagram">
+                        <img src="{{ asset('images/others/instagram white.png') }}" alt="">
+                    </a>
                 </div>
             </header>
             <div class="hero-carousel" data-carousel role="region" aria-label="Featured Arbo materials">
@@ -155,7 +149,7 @@
         <section class="process" id="process">
             <img class="process-image" src="{{ asset('images/others/4.png') }}" alt="Stacks of timber inside a wood storage facility" loading="lazy">
             <div class="process-card">
-                <h2>Our Process <img src="{{ asset('images/others/Rectangle 48.png') }}" alt="" aria-hidden="true"></h2>
+                <h2>Our Process <img src="{{ asset('images/others/white hand.png') }}" alt="" aria-hidden="true"></h2>
                 <p>We collect wood waste, check incoming materials and grind the wood into sawdust. Quality control includes particle-size standardization and COA requirements. Our business plan prioritizes cleaner raw materials, faster loading and improved production capacity to better fulfill customer orders.</p>
             </div>
         </section>
@@ -249,7 +243,7 @@
                 <div class="footer-details">
                     <div class="footer-column footer-contact">
                         <h2>Contact Us</h2>
-                        <a class="footer-detail-row footer-address" href="#location">
+                        <a class="footer-detail-row footer-address" href="https://maps.app.goo.gl/S2T1cNASHiVSVogE6?g_st=ac">
                             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 14s5-4.4 5-8A5 5 0 0 0 3 6c0 3.6 5 8 5 8Z"/><circle cx="8" cy="6" r="1.7"/></svg>
                             <span>Jl. Raya Bringkang No.88A, Buyuk,<br>Bringkang, Kec. Menganti, Kabupaten Gresik,<br>Jawa Timur 61174</span>
                         </a>
@@ -269,15 +263,9 @@
                     <div class="footer-column footer-social">
                         <h2>Social Media</h2>
                         <div class="footer-social-icons" aria-label="Social media">
-                            <span aria-label="YouTube">
-                                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4"/><path d="m10 8 6 4-6 4V8Z"/></svg>
-                            </span>
-                            <span aria-label="Instagram">
+                            <a href="https://www.instagram.com/arbo.ind/" aria-label="Instagram">
                                 <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
-                            </span>
-                            <span aria-label="LinkedIn">
-                                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10v7m0-9.5v.1M11 17v-7m0 3c0-1.7 1-3 2.6-3s2.7 1.1 2.7 3v4"/></svg>
-                            </span>
+                            </a>
                         </div>
                     </div>
                 </div>
