@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('our_galleries', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('image');
+            $table->string('alt_text');
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('our_gall3ries');
+        Schema::dropIfExists('our_galleries');
     }
 };

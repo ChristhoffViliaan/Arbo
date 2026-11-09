@@ -27,10 +27,16 @@
                     <a href="#team">Team</a>
                     <a href="#contact">Contact</a>
                 </nav>
-                <div class="header-socials" aria-label="Social media">
-                    <a href="https://www.instagram.com/arbo.ind/" aria-label="Instagram">
-                        <img src="{{ asset('images/others/instagram white.png') }}" alt="">
-                    </a>
+                <div class="header-socials" aria-label="Social media links">
+                    @foreach ($socialMedias->take(3) as $socialMedia)
+                        <a class="{{ strtolower($socialMedia->{'aria-label'}) === 'instagram' ? 'social-media-icon-link' : '' }}" href="{{ $socialMedia->url }}" aria-label="{{ $socialMedia->{'aria-label'} }}" title="{{ $socialMedia->{'aria-label'} }}">
+                            @if (strtolower($socialMedia->{'aria-label'}) === 'instagram')
+                                <img src="{{ asset('images/others/instagram white.png') }}" alt="">
+                            @else
+                                {{ $socialMedia->{'aria-label'} }}
+                            @endif
+                        </a>
+                    @endforeach
                 </div>
             </header>
             <div class="hero-carousel" data-carousel role="region" aria-label="Featured Arbo materials">
@@ -86,23 +92,48 @@
                     <h2 id="values-title">Company Values</h2>
                     <p>We build lasting partnerships through the way we work, every day.</p>
                 </div>
-                <div class="value-grid">
-                    <article class="value-card">
-                        <span class="value-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="11" cy="9" r="4"/><path d="M3 27v-2a8 8 0 0 1 8-8h1a8 8 0 0 1 8 8v2M21 19l3 3 6-7"/></svg></span>
-                        <h3>Accountability</h3><p>We take ownership and stand behind our work.</p>
-                    </article>
-                    <article class="value-card">
-                        <span class="value-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4 25 8v7c0 6-3.8 10.2-9 13-5.2-2.8-9-7-9-13V8l9-4Z"/><path d="m12 16 2.5 2.5L20 13"/></svg></span>
-                        <h3>Reliability</h3><p>Consistency and care in every commitment.</p>
-                    </article>
-                    <article class="value-card">
-                        <span class="value-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 22H6a4 4 0 0 1-.5-8A8 8 0 0 1 21 12a5 5 0 0 1 2 10h-2"/><path d="m12 21 4-5 4 5m-4-5v12"/></svg></span>
-                        <h3>Breakthrough</h3><p>Curiosity and collaboration move us forward.</p>
-                    </article>
-                    <article class="value-card">
-                        <span class="value-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 22 21 7a4 4 0 0 1 6 6L12 28H6v-6Z"/><path d="m18 10 6 6M6 22l6 6"/></svg></span>
-                        <h3>Ownership</h3><p>We care for our people, materials, and results.</p>
-                    </article>
+                @php($valuePages = $companyValues->chunk(3))
+                <div class="values-carousel-container">
+                    <div class="values-carousel content-track {{ $valuePages->count() > 1 ? 'is-carousel' : '' }}" data-carousel-track role="region" aria-label="Company values">
+                        @foreach ($valuePages as $valuePage)
+                            <div class="value-page" role="group" aria-label="Company values page {{ $loop->iteration }} of {{ $valuePages->count() }}">
+                                <div class="value-grid value-grid-{{ $valuePage->count() }}">
+                                    @foreach ($valuePage as $value)
+                                        <article class="value-card">
+                                            <span class="value-icon" aria-hidden="true">
+                                                <svg viewBox="0 0 32 32">
+                                                    @switch(strtolower($value->icon))
+                                                        @case('accountability')
+                                                            <circle cx="11" cy="9" r="4"/><path d="M3 27v-2a8 8 0 0 1 8-8h1a8 8 0 0 1 8 8v2M21 19l3 3 6-7"/>
+                                                            @break
+                                                        @case('reliability')
+                                                            <path d="M16 4 25 8v7c0 6-3.8 10.2-9 13-5.2-2.8-9-7-9-13V8l9-4Z"/><path d="m12 16 2.5 2.5L20 13"/>
+                                                            @break
+                                                        @case('breakthrough')
+                                                            <path d="M8 22H6a4 4 0 0 1-.5-8A8 8 0 0 1 21 12a5 5 0 0 1 2 10h-2"/><path d="m12 21 4-5 4 5m-4-5v12"/>
+                                                            @break
+                                                        @case('ownership')
+                                                            <path d="M6 22 21 7a4 4 0 0 1 6 6L12 28H6v-6Z"/><path d="m18 10 6 6M6 22l6 6"/>
+                                                            @break
+                                                        @default
+                                                            <path d="M27 5C16 5 7 8 5 17c-1 5 3 9 8 8 9-2 12-11 14-20ZM5 27c4-7 9-11 16-15"/>
+                                                    @endswitch
+                                                </svg>
+                                            </span>
+                                            <h3>{{ $value->title }}</h3>
+                                            <p>{{ $value->description }}</p>
+                                        </article>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    @if ($valuePages->count() > 1)
+                        <div class="content-carousel-controls" aria-label="Company values carousel controls">
+                            <button class="content-carousel-arrow" type="button" data-content-previous aria-label="Previous company values" disabled>←</button>
+                            <button class="content-carousel-arrow" type="button" data-content-next aria-label="Next company values">→</button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </section>
@@ -113,12 +144,27 @@
                     <h2>Our Gallery</h2>
                     <p>From wood-waste collection to sawdust processing, our gallery reflects the materials and industrial applications behind Arbo. We focus on giving wood residues a productive role as raw material for briquettes, wood pellets and MDF.</p>
                 </div>
-                <div class="gallery-grid">
-                    @foreach ([['3a.png', 'gallery-logs'], ['3b.png', 'gallery-mist'], ['3f.png', 'gallery-rounds'], ['3g.png', 'gallery-woodland'], ['3h.png', 'gallery-sunlight'], ['3c.png', 'gallery-forest'], ['3i.png', 'gallery-sunrise'], ['3d.png', 'gallery-lumber'], ['3e.png', 'gallery-stock'], ['3j.png', 'gallery-endgrain']] as [$image, $position])
-                        <figure class="gallery-item {{ $position }}">
-                            <img src="{{ asset('images/others/' . $image) }}" alt="Arbo wood materials and production" loading="lazy">
-                        </figure>
-                    @endforeach
+                @php($galleryPages = $ourGalleries->filter(fn ($gallery) => filled($gallery->image))->values()->chunk(10))
+                <div class="gallery-carousel-container">
+                    <div class="gallery-carousel content-track {{ $galleryPages->count() > 1 ? 'is-carousel' : '' }}" data-carousel-track role="region" aria-label="Our gallery">
+                        @foreach ($galleryPages as $galleryPage)
+                            <div class="gallery-page" role="group" aria-label="Gallery page {{ $loop->iteration }} of {{ $galleryPages->count() }}">
+                                <div class="gallery-grid">
+                                    @foreach ($galleryPage as $gallery)
+                                        <figure class="gallery-item">
+                                            <img src="{{ asset('images/' . ltrim($gallery->image, '/')) }}" alt="{{ $gallery->alt_text ?: 'Arbo wood materials and production' }}" loading="lazy">
+                                        </figure>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    @if ($galleryPages->count() > 1)
+                        <div class="content-carousel-controls" aria-label="Gallery carousel controls">
+                            <button class="content-carousel-arrow" type="button" data-content-previous aria-label="Previous gallery images" disabled>←</button>
+                            <button class="content-carousel-arrow" type="button" data-content-next aria-label="Next gallery images">→</button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </section>
@@ -130,19 +176,25 @@
                     <h2>Our Products</h2>
                     <p>Our core products are made from carefully selected wood. From moulding and mill equipment to quality timber, we combine practical expertise with dependable production.</p>
                 </div>
-                <div class="product-grid">
+                <div class="product-grid content-track {{ $products->count() > 3 ? 'is-carousel' : '' }}" data-carousel-track role="list" aria-label="Our products">
                     @foreach ($products as $product)
-                        <article class="product-card">
+                        <article class="product-card" role="listitem">
                             <div class="product-image"><img src="{{ asset('images/' . ltrim($product->image, '/')) }}" alt="{{ $product->name }}" loading="lazy"></div>
                             <div class="product-copy">
                                 <span class="card-kicker">Arbo collection</span>
                                 <h3>{{ $product->name }}</h3>
                                 <p>{{ $product->description }}</p>
-                                <a href="#contact" aria-label="Ask about {{ $product->name }}">Learn more <span aria-hidden="true">↗</span></a>
+                                <a href="https://wa.me/6281234567890" aria-label="Ask about {{ $product->name }}">Learn more <span aria-hidden="true">↗</span></a>
                             </div>
                         </article>
                     @endforeach
                 </div>
+                @if ($products->count() > 3)
+                    <div class="content-carousel-controls" aria-label="Product carousel controls">
+                        <button class="content-carousel-arrow" type="button" data-content-previous aria-label="Previous products" disabled>←</button>
+                        <button class="content-carousel-arrow" type="button" data-content-next aria-label="Next products">→</button>
+                    </div>
+                @endif
             </div>
         </section>
 
@@ -165,7 +217,7 @@
                     <h2>B2B Supply</h2>
                     <p>Arbo connects industrial customers with dependable wood materials and products. We value clear communication, consistent quality, and a supply approach shaped around your business needs.</p>
                     <p>Whether you are sourcing timber, wood residues, or processed materials, our team is ready to discuss the right fit for your operation.</p>
-                    <a class="button button-dark" href="#contact">Discuss a partnership <span aria-hidden="true">↗</span></a>
+                    <a class="button button-dark" href="https://wa.me/6281234567890">Discuss a partnership <span aria-hidden="true">↗</span></a>
                 </div>
             </div>
         </section>
@@ -177,25 +229,30 @@
                     <h2>Our Blog</h2>
                     <p>Perspectives on responsible materials, better resource use, and the people shaping a more thoughtful wood industry.</p>
                 </div>
-                <div class="blog-grid">
-                    <article class="blog-card">
-                        <a href="#contact" class="blog-image"><img src="{{ asset('images/others/3f.png') }}" alt="Cut logs stacked together" loading="lazy"></a>
-                        <span class="blog-meta">Materials · 5 min read</span>
-                        <h3><a href="#contact">Wood Waste</a></h3>
-                        <p>Small changes in how we use wood can create meaningful value across the material lifecycle.</p>
-                    </article>
-                    <article class="blog-card">
-                        <a href="#contact" class="blog-image"><img src="{{ asset('images/others/3d.png') }}" alt="Timber stored on warehouse racks" loading="lazy"></a>
-                        <span class="blog-meta">Insights · 4 min read</span>
-                        <h3><a href="#contact">Biomass Use</a></h3>
-                        <p>Thoughtful processing can turn wood by-products into a useful part of the resource cycle.</p>
-                    </article>
-                    <article class="blog-card">
-                        <a href="#contact" class="blog-image"><img src="{{ asset('images/others/3c.png') }}" alt="Trees in a deep red forest" loading="lazy"></a>
-                        <span class="blog-meta">Our approach · 6 min read</span>
-                        <h3><a href="#contact">Quality First</a></h3>
-                        <p>Quality is built into every decision, from sourcing and sorting through to the final product.</p>
-                    </article>
+                @php($blogPages = $blogs->chunk(3))
+                <div class="blog-carousel-container">
+                    <div class="blog-carousel content-track {{ $blogPages->count() > 1 ? 'is-carousel' : '' }}" data-carousel-track role="region" aria-label="Our blog">
+                        @foreach ($blogPages as $blogPage)
+                            <div class="blog-page" role="group" aria-label="Blog page {{ $loop->iteration }} of {{ $blogPages->count() }}">
+                                <div class="blog-grid blog-grid-{{ $blogPage->count() }}" role="list">
+                                    @foreach ($blogPage as $blog)
+                                        <article class="blog-card" role="listitem">
+                                            <a href="#contact" class="blog-image"><img src="{{ asset('images/' . ltrim($blog->image, '/')) }}" alt="{{ $blog->title }}" loading="lazy"></a>
+                                            <span class="blog-meta">{{ $blog->subtext }}</span>
+                                            <h3><a href="#contact">{{ $blog->title }}</a></h3>
+                                            <p>{{ $blog->description }}</p>
+                                        </article>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    @if ($blogPages->count() > 1)
+                        <div class="content-carousel-controls" aria-label="Blog carousel controls">
+                            <button class="content-carousel-arrow" type="button" data-content-previous aria-label="Previous blog posts" disabled>←</button>
+                            <button class="content-carousel-arrow" type="button" data-content-next aria-label="Next blog posts">→</button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </section>
@@ -207,7 +264,7 @@
                 <span class="eyebrow">Better materials. Better together.</span>
                 <h2>Let’s Partner!</h2>
                 <p>Let’s create more value from every resource.</p>
-                <a class="button button-light" href="#contact">Start a conversation <span aria-hidden="true">↗</span></a>
+                <a class="button button-light" href="https://wa.me/6281234567890">Start a conversation <span aria-hidden="true">↗</span></a>
             </div>
         </section>
 
@@ -218,12 +275,16 @@
                     <p>Meet the members of highly skilled, committed and motivated professionals specializing in respective core fields.</p>
                 </div>
                 <div class="team-grid">
-                    @foreach ($members as $member)
-                        <article class="team-card">
-                            <div class="team-photo"><img src="{{ asset('images/' . ltrim($member->image, '/')) }}" alt="{{ $member->name }}" loading="lazy"></div>
-                            <h3>{{ $member->name }}</h3>
-                            <p>{{ $member->title }}</p>
-                        </article>
+                    @foreach ($members->chunk(3) as $teamRow)
+                        <div class="team-grid-row team-grid-row-{{ $teamRow->count() }}">
+                            @foreach ($teamRow as $member)
+                                <article class="team-card">
+                                    <div class="team-photo"><img src="{{ asset('images/' . ltrim($member->image, '/')) }}" alt="{{ $member->name }}" loading="lazy"></div>
+                                    <h3>{{ $member->name }}</h3>
+                                    <p>{{ $member->title }}</p>
+                                </article>
+                            @endforeach
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -248,7 +309,14 @@
                             <span>Jl. Raya Bringkang No.88A, Buyuk,<br>Bringkang, Kec. Menganti, Kabupaten Gresik,<br>Jawa Timur 61174</span>
                         </a>
                         <a class="footer-detail-row" href="https://wa.me/6285940790005">
-                            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.2 2.2h2l1 3-1.4 1.4a10 10 0 0 0 3.6 3.6l1.4-1.4 3 1v2c0 .7-.6 1.2-1.3 1.2A10.7 10.7 0 0 1 3 3.5c0-.7.5-1.3 1.2-1.3Z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 16 16"
+                                fill="#ffffff"
+                                aria-hidden="true">
+                                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c.002-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.034-.099.015-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                            </svg>
                             <span>+62 859-4079-0005</span>
                         </a>
                         <a class="footer-detail-row" href="mailto:arboresources@gmail.com">
@@ -263,10 +331,16 @@
                     </div>
                     <div class="footer-column footer-social">
                         <h2>Social Media</h2>
-                        <div class="footer-social-icons" aria-label="Social media">
-                            <a href="https://www.instagram.com/arbo.ind/" aria-label="Instagram">
-                                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
-                            </a>
+                        <div class="footer-social-icons" aria-label="Social media links">
+                            @foreach ($socialMedias as $socialMedia)
+                                <a class="{{ strtolower($socialMedia->{'aria-label'}) === 'instagram' ? 'social-media-icon-link' : '' }}" href="{{ $socialMedia->url }}" aria-label="{{ $socialMedia->{'aria-label'} }}">
+                                    @if (strtolower($socialMedia->{'aria-label'}) === 'instagram')
+                                        <img src="{{ asset('images/others/instagram white.png') }}" alt="">
+                                    @else
+                                        {{ $socialMedia->{'aria-label'} }}
+                                    @endif
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -277,12 +351,11 @@
         </div>
     </footer>
 
-    <a class="floating-contact" href="#contact" aria-label="Contact Arbo">
-        <span class="floating-contact-label">Contact Us</span>
+    <a class="floating-contact" href="https://wa.me/6281234567890" aria-label="Contact Arbo on WhatsApp">
+        <span class="floating-contact-label">WhatsApp</span>
         <span class="floating-contact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.19 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.09 4.18 2 2 0 0 1 4.08 2h3a2 2 0 0 1 2 1.72c.12.96.35 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.05 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.84.57 2.8.69A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M15 5a5 5 0 0 1 4 4M15 1a9 9 0 0 1 8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                <path d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.42 0 .04 5.38.04 12c0 2.11.55 4.17 1.6 5.99L0 24l6.17-1.62A11.94 11.94 0 0 0 12.04 24C18.66 24 24 18.62 24 12c0-3.2-1.24-6.22-3.48-8.52ZM12.04 21.98a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-3.66.96.98-3.57-.24-.37A9.93 9.93 0 0 1 2.2 12c0-5.43 4.42-9.85 9.85-9.85 2.63 0 5.1 1.03 6.96 2.89A9.78 9.78 0 0 1 21.9 12c0 5.43-4.42 9.98-9.86 9.98Zm5.4-7.4c-.3-.15-1.77-.88-2.04-.98-.27-.1-.47-.15-.67.15-.2.3-.77.98-.95 1.18-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.12 3.23 5.13 4.53.72.31 1.28.5 1.71.64.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.13-.27-.2-.57-.35Z"/>
             </svg>
         </span>
     </a>

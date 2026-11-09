@@ -97,3 +97,35 @@ if (carousel instanceof HTMLElement && carousel.querySelectorAll('.hero-panel').
         startAutoAdvance();
     }
 }
+
+document.querySelectorAll('[data-carousel-track].is-carousel').forEach((track) => {
+    if (!(track instanceof HTMLElement)) {
+        return;
+    }
+
+    const controls = track.parentElement?.querySelector('.content-carousel-controls');
+    const previous = controls?.querySelector('[data-content-previous]');
+    const next = controls?.querySelector('[data-content-next]');
+
+    if (!(previous instanceof HTMLButtonElement) || !(next instanceof HTMLButtonElement)) {
+        return;
+    }
+
+    const updateControls = () => {
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        previous.disabled = track.scrollLeft <= 1;
+        next.disabled = track.scrollLeft >= maxScroll - 1;
+    };
+
+    previous.addEventListener('click', () => {
+        track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+    });
+
+    next.addEventListener('click', () => {
+        track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+    });
+
+    track.addEventListener('scroll', updateControls, { passive: true });
+    window.addEventListener('resize', updateControls);
+    updateControls();
+});

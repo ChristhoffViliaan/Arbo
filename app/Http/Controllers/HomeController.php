@@ -14,12 +14,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'members'       => Member::all(),
-            'products'      => Product::all(),
-            'companyValues' => CompanyValues::all(),
-            'blogs'         => OurBlog::all(),
-            'ourGalleries'  => OurGallery::all(),
-            'socialMedias'  => SocialMedia::all(),
+            'members'       => Member::orderBy('id')->get(),
+            'products'      => Product::orderBy('id')->get(),
+            'companyValues' => CompanyValues::orderBy('id')->get(),
+            'blogs'         => OurBlog::orderBy('id')->get(),
+            'ourGalleries'  => OurGallery::orderBy('id')->get(),
+            'socialMedias'  => SocialMedia::orderBy('id')->get(),
         ]);
     }
 }
