@@ -440,7 +440,7 @@ button { font: inherit; }
 .footer-contact .footer-detail-row { font-size: 12px; }
 .footer-contact svg { width: 17px; height: 17px; flex: 0 0 17px; fill: none; stroke: currentColor; stroke-width: 1.4; }
 .footer-contact .footer-detail-row:last-child span { text-decoration: underline; text-underline-offset: 2px; }
-.footer-contact .footer-whatsapp-icon { width: clamp(8px, 1.2vw, 17px); height: clamp(8px, 1.2vw, 17px); flex: 0 0 auto; object-fit: contain; }
+.footer-contact .footer-whatsapp-icon { width: clamp(12px, 1.5vw, 18px); height: clamp(12px, 1.5vw, 18px); min-width: 12px; max-width: 18px; flex-shrink: 0; object-fit: contain; }
 .footer-hours p span { margin-left: 8px; }
 .footer-hours p:first-of-type span {margin-left: 0;}
 .footer-social-icons { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 4px; }
