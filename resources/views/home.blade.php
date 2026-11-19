@@ -347,12 +347,12 @@
             </div>
         </div>
     </footer>
-
+{{-- 
     <a class="floating-contact" href="https://wa.me/6281234567890" aria-label="Contact Arbo on WhatsApp">
         <span class="floating-contact-label">Contact Us</span>
         <span class="floating-contact-icon" aria-hidden="true">
             <img src="{{ asset('images/others/Whatsapp.png') }}" alt="">
         </span>
-    </a>
+    </a> --}}
 </body>
 </html> 
