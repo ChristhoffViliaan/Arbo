@@ -308,7 +308,7 @@
                             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 14s5-4.4 5-8A5 5 0 0 0 3 6c0 3.6 5 8 5 8Z"/><circle cx="8" cy="6" r="1.7"/></svg>
                             <span>Jl. Raya Bringkang No.88A, Buyuk,<br>Bringkang, Kec. Menganti, Kabupaten Gresik,<br>Jawa Timur 61174</span>
                         </a>
-                        <a class="footer-detail-row" href="https://wa.me/6285940790005">
+                        <a class="footer-detail-row footer-whatsapp-row" href="https://wa.me/6285940790005">
                             <i class="fa-brands fa-whatsapp footer-whatsapp-icon"
                             aria-hidden="true"></i>
                             <span>+62 859-4079-0005</span>
