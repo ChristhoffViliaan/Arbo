@@ -442,7 +442,7 @@ button { font: inherit; }
 .footer-contact svg { width: 17px; height: 17px; flex: 0 0 17px; fill: none; stroke: currentColor; stroke-width: 1.4; }
 .footer-contact .footer-detail-row:last-child span { text-decoration: underline; text-underline-offset: 2px; }
 .footer-contact .footer-whatsapp-icon { display: inline-block; font-size: clamp(8px, 1.5vw, 18px); line-height: 1; flex: 0 0 auto; }
-.floating-contact-icon img { width: 32px; height: auto; max-width: 100%; object-fit: contain; }
+.footer-contact .footer-whatsapp-row { align-items: center; gap: 7px; }
 .footer-hours p span { margin-left: 8px; }
 .footer-hours p:first-of-type span {margin-left: 0;}
 .footer-social-icons { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 4px; }
@@ -460,7 +460,7 @@ button { font: inherit; }
     bottom: clamp(10px, 1.5vw, 24px);
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: clamp(8px, 1vw, 18px);
     color: #202020;
     transition: transform .2s ease;
 }
@@ -472,17 +472,7 @@ button { font: inherit; }
     line-height: 1;
     box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
 }
-.floating-contact-icon {
-    display: grid;
-    width: clamp(45px, 5.5vw, 80px);
-    height: clamp(45px, 5.5vw, 80px);
-    flex: 0 0 clamp(45px, 5.5vw, 80px);
-    place-items: center;
-    border-radius: 50%;
-    background: #25ba00;
-    color: var(--white);
-}
-.floating-contact-icon svg { width: clamp(20px, 2.2vw, 32px); height: clamp(20px, 2.2vw, 32px); }
+.floating-contact img { display: block; width: clamp(35px, 5.5vw, 80px); height: auto; }
 .floating-contact:hover { transform: translateY(-3px); }
 .floating-contact:focus-visible { outline: 3px solid var(--forest); outline-offset: 4px; }
 
@@ -517,7 +507,9 @@ button { font: inherit; }
     .footer-column h2 { margin: 0 0 2px; font-size: 9px; }
     .footer-column .footer-detail-row { gap: 4px; font-size: 6px; line-height: 1.2; }
     .footer-contact { gap: 2px; }
+    .footer-contact .footer-whatsapp-row { gap: 2px; }
     .footer-contact svg { width: 8px; height: 8px; flex-basis: 8px; }
+    .footer-contact .footer-whatsapp-icon { width: 8px; flex-basis: 8px; font-size: 8px;}
     .footer-hours p { font-size: 6px; line-height: 1.3; }
     .footer-hours p span { margin-left: 4px; }
     .footer-social-icons { gap: 5px; margin-top: 1px; }
