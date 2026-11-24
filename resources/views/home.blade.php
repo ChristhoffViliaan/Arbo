@@ -310,8 +310,7 @@
                         </a>
                         <a class="footer-detail-row footer-whatsapp-row" href="https://wa.me/6285940790005">
                             <i class="fa-brands fa-whatsapp footer-whatsapp-icon"
-                            aria-hidden="true"></i>
-                            <span>+62 859-4079-0005</span>
+                            aria-hidden="true"></i><span>+62 859-4079-0005</span>
                         </a>
                         <a class="footer-detail-row" href="mailto:arboresources@gmail.com">
                             <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3" width="13" height="10" rx="1"/><path d="m2 4 6 5 6-5"/></svg>
@@ -347,9 +346,7 @@
 
     <a class="floating-contact" href="https://wa.me/6281234567890" aria-label="Contact Arbo on WhatsApp">
         <span class="floating-contact-label">Contact Us</span>
-        <span class="floating-contact-icon" aria-hidden="true">
-            <img src="{{ asset('images/others/Whatsapp.png') }}" alt="">
-        </span>
+        <img src="{{ asset('images/others/Green Whatsapp.png') }}" alt="" aria-hidden="true">
     </a>
 </body>
 </html> 
